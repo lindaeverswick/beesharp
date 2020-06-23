@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 
 // Subrouters
 const instrumentRouter = require('./routes/instrumentRoutes');
+const logRouter = require('./routes/logRoutes');
 
 const app = express();
 const port = 3000;
@@ -18,6 +19,7 @@ app.use(cookieParser());
 
 // Sub Routers
 app.use('/api/instruments', instrumentRouter);
+app.use('/api/logs', logRouter);
 
 
 

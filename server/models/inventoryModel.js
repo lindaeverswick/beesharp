@@ -5,15 +5,6 @@ const pool = new Pool({
 })
 pool.query('SELECT NOW()', (err, res) => {
   console.log(err, res)
-  pool.end()
-})
-const client = new Client({
-  connectionString: connectionString,
-})
-client.connect()
-client.query('SELECT NOW()', (err, res) => {
-  console.log(err, res)
-  client.end()
 })
 
 const addInstrument = (Category, Make, Model, Color, InstrumentId) => {
@@ -29,3 +20,10 @@ const addLog = (dateCheckedOut, dateCheckedIn, instrumentId, userId, checkOutNot
   INSERT INTO log (dateCheckedOut, dateCheckedIn, instrumentId, userId, checkOutNotes, checkInNotes)
   VALUES (`'${dateCheckedOut}', '${dateCheckedIn}', '${instrumentId}', '${userId}', '${checkOutNotes}', '${checkInNotes}'`); 
 }
+
+module.exports = {
+  query: (text, params, callback) => {
+    console.log('executed query', text);
+    return pool.query(text, params, callback);
+  }
+};

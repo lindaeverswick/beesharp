@@ -1,4 +1,5 @@
 // IMPORT MODEL
+const db = require('../models/inventoryModel');
 // IMPORT CRUD CONTROLLER
 
 const readOne = async (req, res, next) => {

@@ -49,7 +49,6 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   const addCategory = (e) => {
-    console.log(e.target.value); // keyboards
     const array = [];
     instruments.forEach((obj) => {
       if (obj.category === e.target.value) {

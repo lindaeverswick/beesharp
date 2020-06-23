@@ -3,15 +3,11 @@ import FeedBox from "../components/FeedBox";
 
 const Feed = (props) => {
   const { items } = props;
-  const itemArray = items.map((item, index) => {
-    return (
-      <div className="feedBox" key={`item${index}`}>
-        {item.color} {item.make} {item.model}
-      </div>
-    );
-  });
-
-  return <>{itemArray}</>;
+  return (
+    <>
+      <FeedBox items={items} />
+    </>
+  );
 };
 
 export default Feed;

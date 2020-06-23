@@ -6,7 +6,6 @@ const SubCategories = (props) => {
   const { categories } = props;
 
   const handleClick = (e) => {
-    console.log(e.target.value);
     const array = [];
     categories.forEach((cat) => {
       if (
@@ -19,10 +18,6 @@ const SubCategories = (props) => {
     });
     setItems([...items, ...array]);
   };
-
-  useEffect(() => {
-    console.log(items);
-  });
 
   let makeArray = categories.map((sub) => sub.make);
   makeArray = makeArray
@@ -65,21 +60,25 @@ const SubCategories = (props) => {
         </li>
       );
     });
-
+  const make = makeArray.length === 0 ? "" : "Make";
+  const model = modelArray.length === 0 ? "" : "Model";
+  const color = colorArray.length === 0 ? "" : "Color";
   return (
     <>
-      <ul className="makeCategories">
-        <li>Make</li>
-        {makeArray}
-      </ul>
-      <ul className="modelCategories">
-        <li>Model</li>
-        {modelArray}
-      </ul>
-      <ul className="colorCategories">
-        <li>Color</li>
-        {colorArray}
-      </ul>
+      <div className="makeCategories">
+        <h4>{make}</h4>
+        <ul className="makeList">{makeArray}</ul>
+      </div>
+
+      <div className="modelCategories">
+        <h4>{model}</h4>
+        <ul className="modelList">{modelArray}</ul>
+      </div>
+
+      <div className="colorCategories">
+        <h4>{color}</h4>
+        <ul className="colorList">{colorArray}</ul>
+      </div>
       <Feed items={items} />
     </>
   );

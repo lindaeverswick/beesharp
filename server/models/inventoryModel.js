@@ -7,19 +7,19 @@ pool.query('SELECT NOW()', (err, res) => {
   console.log(err, res)
 })
 
-const addInstrument = (Category, Make, Model, Color, InstrumentId) => {
-  INSERT INTO instruments (Category, Make, Model, Color, InstrumentId, LastCheckout, isCheckedOut, NeedsRepair)
-  VALUES (`'${Category}', '${Make}', '${Model}', '${Color}', '${InstrumentId}', '', false, false`); 
-}
-const addUser = (firstName, lastName, username, email, password, isAdmin) => {
-  INSERT INTO users (firstName, lastName, username, email, password, isAdmin)
-  VALUES (`'${firstName}', '${lastName}', '${username}', '${email}', '${password}', ${isadmin}`); 
-}
-//should userId be the username? or is this a unique key? how do we get the primary keys from a SQL table?
-const addLog = (dateCheckedOut, dateCheckedIn, instrumentId, userId, checkOutNotes, checkInNotes) => {
-  INSERT INTO log (dateCheckedOut, dateCheckedIn, instrumentId, userId, checkOutNotes, checkInNotes)
-  VALUES (`'${dateCheckedOut}', '${dateCheckedIn}', '${instrumentId}', '${userId}', '${checkOutNotes}', '${checkInNotes}'`); 
-}
+// const addInstrument = (Category, Make, Model, Color, InstrumentId) => {
+//   INSERT INTO instruments (Category, Make, Model, Color, InstrumentId, LastCheckout, isCheckedOut, NeedsRepair)
+//   VALUES (`'${Category}', '${Make}', '${Model}', '${Color}', '${InstrumentId}', '', false, false`); 
+// }
+// const addUser = (firstName, lastName, username, email, password, isAdmin) => {
+//   INSERT INTO users (firstName, lastName, username, email, password, isAdmin)
+//   VALUES (`'${firstName}', '${lastName}', '${username}', '${email}', '${password}', ${isadmin}`); 
+// }
+// //should userId be the username? or is this a unique key? how do we get the primary keys from a SQL table?
+// const addLog = (dateCheckedOut, dateCheckedIn, instrumentId, userId, checkOutNotes, checkInNotes) => {
+//   INSERT INTO log (dateCheckedOut, dateCheckedIn, instrumentId, userId, checkOutNotes, checkInNotes)
+//   VALUES (`'${dateCheckedOut}', '${dateCheckedIn}', '${instrumentId}', '${userId}', '${checkOutNotes}', '${checkInNotes}'`); 
+// }
 
 module.exports = {
   query: (text, params, callback) => {

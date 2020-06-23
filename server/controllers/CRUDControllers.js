@@ -7,7 +7,6 @@ const readOne = (model) => async (req, res, next) => {
 
 const readMany = (model) => async (req, res, next) => {
     // Set validation checks
-    
     try {
       const { rows } = await db.query(`
         SELECT * FROM ${model}`

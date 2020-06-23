@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controllers = require('../controllers/instrumentController');
+const controllers = require('../controllers/instrumentControllers');
 
 
 // instruments/
@@ -14,13 +14,25 @@ router
 // instruments/new
 router
   .route('/new')
-  .post(controllers.createOne);
+  .post(
+    controllers.createOne,
+    (req, res) => res.status(200).json(res.locals)
+  );
 
 // instruments/:id
 router
   .route('/:id')
-  .get(controllers.readOne)
-  .put(controllers.updateOne)
-  .delete(controllers.deleteOne);
+  .get(
+    controllers.readOne,
+    (req, res) => res.status(200).json(res.locals)
+  )
+  .put(
+    controllers.updateOne,
+    (req, res) => res.status(200).json(res.locals)
+  )
+  .delete(
+    controllers.deleteOne, 
+    (req, res) => res.status(200).json(res.locals)
+  );
 
 module.exports = router;

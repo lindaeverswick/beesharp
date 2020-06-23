@@ -1,11 +1,29 @@
 const express = require("express");
 const path = require("path");
+const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser')
+
+// Subrouters
+const instrumentRouter = require('./routes/instrumentRoutes');
 
 const app = express();
 const port = 3000;
 
+
+
+// Global Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+// Sub Routers
+app.use('/api/instruments', instrumentRouter);
+
+
+
+
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "/src/index.html"));
+  res.sendFile(path.resolve(__dirname, '../src/index.html'));
 });
 
 app.use((err, req, res, next) => {

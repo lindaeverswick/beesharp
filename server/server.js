@@ -29,13 +29,7 @@ app.get("/", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  const defErr = {
-    log: "Express error handler caught unknown middleware error",
-    status: 400,
-    message: "An error occurred",
-  };
-  const errorObj = { ...defErr, ...err };
-  console.log(errorObj.log);
-  res.status(errorObj.status).json(errorObj.message);
+  console.log("Error Message: ", err.message)
+  res.status(400).json("Express error handler caught unknown middleware error");
 });
 app.listen(port, () => console.log(`App listening on port ${port}!`));

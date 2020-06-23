@@ -1,23 +1,38 @@
 const express = require('express');
 const router = express.Router();
-const controllers = require('../controllers/logController');
+const controllers = require('../controllers/logControllers');
 
 
 // logs/
 router
   .route('/')
-  .get(controllers.readMany);
+  .get(
+    controllers.readMany,
+    (req, res) => res.status(200).json(res.locals)
+  );
 
 // logs/new
 router
   .route('/new')
-  .post(controllers.createOne);
+  .post(
+    controllers.createOne,
+    (req, res) => res.status(200).json(res.locals)
+  );
 
 // logs/:id
 router
   .route('/:id')
-  .get(controllers.readOne)
-  .put(controllers.updateOne)
-  .delete(controllers.deleteOne);
+  .get(
+    controllers.readOne,
+    (req, res) => res.status(200).json(res.locals)
+  )
+  .put(
+    controllers.updateOne,
+    (req, res) => res.status(200).json(res.locals)
+  )
+  .delete(
+    controllers.deleteOne,
+    (req, res) => res.status(200).json(res.locals)
+  );
 
 module.exports = router;

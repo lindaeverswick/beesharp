@@ -6,7 +6,10 @@ const controllers = require('../controllers/instrumentController');
 // instruments/
 router
   .route('/')
-  .get(controllers.readMany);
+  .get(
+    controllers.readMany,
+    (req, res) => res.status(200).json(res.locals)
+  );
 
 // instruments/new
 router

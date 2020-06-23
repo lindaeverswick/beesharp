@@ -1,34 +1,90 @@
 import React, { useState, useEffect, useRef } from "react";
-import Feed from "./Feed";
+import Feed from "../containers/Feed";
+import subCategories from "./SubCategories";
+import SubCategories from "./SubCategories";
 
 const Categories = () => {
-  const [category, setCategory] = useState("");
-  const [items, setItems] = useState({
-    pianos: [{}],
-  });
-  const handleChange = (e) => {
-    setCategory(e.target.value);
-  };
+  const [instruments, setInstruments] = useState([
+    {
+      category: "guitar amps",
+      make: "Orange",
+      model: "Pro 120",
+      color: "orange",
+      instrumentid: "123",
+      lastcheckout: "lastCheckout",
+      ischeckedout: false,
+      needsrepair: false,
+    },
+    {
+      category: "keyboards",
+      make: "Yamaha",
+      model: "P-125",
+      color: "",
+      instrumentid: "123",
+      lastcheckout: "lastCheckout",
+      ischeckedout: false,
+      needsrepair: false,
+    },
+    {
+      category: "keyboards",
+      make: "Korg",
+      model: "SP-170",
+      color: "",
+      instrumentid: "123",
+      lastcheckout: "lastCheckout",
+      ischeckedout: false,
+      needsrepair: false,
+    },
+    {
+      category: "keyboards",
+      make: "TESTING",
+      model: "SP-170",
+      color: "",
+      instrumentid: "123",
+      lastcheckout: "lastCheckout",
+      ischeckedout: false,
+      needsrepair: false,
+    },
+  ]);
+  const [categories, setCategories] = useState([]);
+
   const addCategory = (e) => {
-    setCategory("");
+    console.log(e.target.value); // keyboards
+    const array = [];
+    instruments.forEach((obj) => {
+      if (obj.category === e.target.value) {
+        array.push(obj);
+      }
+    });
+    setCategories([...categories, ...array]);
+    console.log(categories);
   };
+
+  // useEffect(() => {
+  //   fetch("/api/instruments/")
+  //     .then((data) => JSON.stringify(data))
+  //     .then((data) => setInstruments(data.payload));
+  // }, []);
+
+  let categoryArray = instruments.map((cat) => cat.category);
+  categoryArray = categoryArray
+    .filter((a, b) => categoryArray.indexOf(a) === b)
+    .map((tag, index) => {
+      return (
+        <li className="category" key={`category${index}`}>
+          <button type="button" value={tag} onClick={addCategory}>
+            -
+          </button>
+          {tag}
+        </li>
+      );
+    });
+
   return (
     <>
-      <input
-        id="category"
-        type="text"
-        placeholder="enter category"
-        value={category}
-        onChange={handleChange}
-        required
-      />
-      <button type="button" onClick={addCategory}>
-        Add
-      </button>
-      <div className="categoryList">
-        <ul>
-          <li>asdf</li>
-        </ul>
+      <ul className="instrumentCategories">{categoryArray}</ul>
+      <div>
+        <SubCategories categories={categories} />
       </div>
     </>
   );

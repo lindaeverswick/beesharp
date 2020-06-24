@@ -48,4 +48,6 @@ module.exports = {
     new MiniCssExtractPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ],
+ 
+   mode: 'production'
 };

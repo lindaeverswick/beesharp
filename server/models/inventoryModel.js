@@ -1,4 +1,4 @@
-const { Pool, Client } = require('pg')
+const { Pool } = require('pg')
 const connectionString = 'postgres://ahtywmkw:wkHRU9n3zLf4f4960N3b_ol9tD8nb2Bm@ruby.db.elephantsql.com:5432/ahtywmkw'
 const pool = new Pool({
   connectionString: connectionString,

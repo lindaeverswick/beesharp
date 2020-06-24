@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 // Subrouters
 const instrumentRouter = require('./routes/instrumentRoutes');
 const logRouter = require('./routes/logRoutes');
-const authRouter = require('./routes/authRoutes');
+// const authRouter = require('./routes/authRoutes');
 const userRouter = require('./routes/userRoutes');
 
 const app = express();
@@ -21,8 +21,7 @@ app.use(cookieParser());
 app.use('/api/instruments', instrumentRouter);
 app.use('/api/logs', logRouter);
 app.use('/api/users', userRouter);
-app.use('/auth', authRouter)
-
+// app.use('/auth', authRouter)
 
 
 

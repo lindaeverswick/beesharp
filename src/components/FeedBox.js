@@ -11,11 +11,14 @@ const FeedBox = (props) => {
     );
   });
 
-  useEffect(() => {
+  const get = () => {
     fetch("/api/logs", {
       method: "GET",
-    }).then((data) => console.log(data));
-  });
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
 
   return (
     <>
@@ -23,6 +26,7 @@ const FeedBox = (props) => {
       <div className="feedBox">
         <ul>{itemArray}</ul>
       </div>
+      <button onClick={get}></button>
     </>
   );
 };

@@ -4,8 +4,10 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
 // Subrouters
-const instrumentRouter = require("./routes/instrumentRoutes");
-const logRouter = require("./routes/logRoutes");
+const instrumentRouter = require('./routes/instrumentRoutes');
+const logRouter = require('./routes/logRoutes');
+const authRouter = require('./routes/authRoutes');
+const userRouter = require('./routes/userRoutes');
 
 const app = express();
 const port = 3000;
@@ -16,11 +18,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Sub Routers
-app.use("/api/instruments", instrumentRouter);
-app.use("/api/logs", logRouter);
+app.use('/api/instruments', instrumentRouter);
+app.use('/api/logs', logRouter);
+app.use('/api/users', userRouter);
+app.use('/auth', authRouter)
+
+
+
 
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../src/index.html"));
+  // console.log("req", req)
+  res.sendFile(path.resolve(__dirname, '../src/index.html'));
 });
 
 app.use((err, req, res, next) => {

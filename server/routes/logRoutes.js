@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const controllers = require('../controllers/instrumentControllers');
+const controllers = require('../controllers/logControllers');
 
 
-// instruments/
+// logs/
 router
   .route('/')
   .get(
@@ -11,7 +11,7 @@ router
     (req, res) => res.status(200).json(res.locals)
   );
 
-// instruments/new
+// logs/new
 router
   .route('/new')
   .post(
@@ -19,7 +19,7 @@ router
     (req, res) => res.status(200).json(res.locals)
   );
 
-// instruments/:id
+// logs/:id
 router
   .route('/:id')
   .get(
@@ -31,7 +31,7 @@ router
     (req, res) => res.status(200).json(res.locals)
   )
   .delete(
-    controllers.deleteOne, 
+    controllers.deleteOne,
     (req, res) => res.status(200).json(res.locals)
   );
 

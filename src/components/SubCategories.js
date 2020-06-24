@@ -16,7 +16,18 @@ const SubCategories = (props) => {
         array.push(cat);
       }
     });
+    for (let i = 0; i < items.length; i++) {
+      for (let j = 0; j < array.length; j++) {
+        if (
+          items[i].model === array[j].model &&
+          items[i].make === array[j].make
+        ) {
+          array.splice(j, 1);
+        }
+      }
+    }
     setItems([...items, ...array]);
+    console.log(items);
   };
 
   let makeArray = categories.map((sub) => sub.make);

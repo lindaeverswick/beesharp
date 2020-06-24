@@ -42,7 +42,7 @@ const Categories = () => {
       color: "",
       instrumentid: "123",
       lastcheckout: "lastCheckout",
-      ischeckedout: false,
+      ischeckedout: true,
       needsrepair: false,
     },
   ]);
@@ -55,15 +55,19 @@ const Categories = () => {
         array.push(obj);
       }
     });
+    for (let i = 0; i < categories.length; i++) {
+      for (let j = 0; j < array.length; j++) {
+        if (
+          categories[i].model === array[j].model &&
+          categories[i].make === array[j].make
+        ) {
+          array.splice(j, 1);
+        }
+      }
+    }
     setCategories([...categories, ...array]);
-    console.log(categories);
+    // console.log(categories);
   };
-
-  // useEffect(() => {
-  //   fetch("/api/instruments/")
-  //     .then((data) => JSON.stringify(data))
-  //     .then((data) => setInstruments(data.payload));
-  // }, []);
 
   let categoryArray = instruments.map((cat) => cat.category);
   categoryArray = categoryArray

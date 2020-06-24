@@ -27,8 +27,11 @@ app.use('/auth', authRouter)
 
 
 app.get("/", (req, res) => {
-  // console.log("req", req)
-  res.sendFile(path.resolve(__dirname, '../src/index.html'));
+  if (req.user) {
+    res.sendFile(path.resolve(__dirname, '../src/index.html'));
+  } else {
+    res.redirect('/auth/login');
+  }
 });
 
 app.use((err, req, res, next) => {

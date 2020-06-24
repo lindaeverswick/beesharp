@@ -2,10 +2,10 @@
   "name": "beesharp",
   "version": "1.0.0",
   "description": "Musical instrument logger",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "node server/server.js",
-    "dev": "NODE_ENV=development webpack-dev-server --open & NODE_ENV=development nodemon",
+    "dev": "NODE_ENV=development webpack-dev-server --open & NODE_ENV=development nodemon server/server.js",
     "build": "NODE_ENV=production && webpack",
     "windev": "set \"NODE_ENV=development\" && concurrently \"webpack-dev-server --open\" \"nodemon server/server.js\"",
     "winbuild": "set NODE_ENV=production && webpack"

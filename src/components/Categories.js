@@ -4,48 +4,7 @@ import subCategories from "./SubCategories";
 import SubCategories from "./SubCategories";
 
 const Categories = () => {
-  const [instruments, setInstruments] = useState([
-    {
-      category: "guitar amps",
-      make: "Orange",
-      model: "Pro 120",
-      color: "orange",
-      instrumentid: "123",
-      lastcheckout: "lastCheckout",
-      ischeckedout: false,
-      needsrepair: false,
-    },
-    {
-      category: "keyboards",
-      make: "Yamaha",
-      model: "P-125",
-      color: "",
-      instrumentid: "123",
-      lastcheckout: "lastCheckout",
-      ischeckedout: false,
-      needsrepair: false,
-    },
-    {
-      category: "keyboards",
-      make: "Korg",
-      model: "SP-170",
-      color: "",
-      instrumentid: "123",
-      lastcheckout: "lastCheckout",
-      ischeckedout: false,
-      needsrepair: false,
-    },
-    {
-      category: "keyboards",
-      make: "TESTING",
-      model: "SP-170",
-      color: "",
-      instrumentid: "123",
-      lastcheckout: "lastCheckout",
-      ischeckedout: true,
-      needsrepair: false,
-    },
-  ]);
+  const [instruments, setInstruments] = useState([]);
   const [categories, setCategories] = useState([]);
 
   const addCategory = (e) => {
@@ -55,6 +14,7 @@ const Categories = () => {
         array.push(obj);
       }
     });
+
     for (let i = 0; i < categories.length; i++) {
       for (let j = 0; j < array.length; j++) {
         if (
@@ -68,6 +28,12 @@ const Categories = () => {
     setCategories([...categories, ...array]);
     // console.log(categories);
   };
+
+  useEffect(() => {
+    fetch("/api/instruments")
+      .then((data) => data.json())
+      .then((data) => setInstruments(data.payload));
+  }, []);
 
   let categoryArray = instruments.map((cat) => cat.category);
   categoryArray = categoryArray

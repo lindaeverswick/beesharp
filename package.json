@@ -7,7 +7,8 @@
     "start": "node server/server.js",
     "dev": "NODE_ENV=development webpack-dev-server --open & NODE_ENV=development nodemon",
     "build": "NODE_ENV=production && webpack",
-    "windev": "set \"NODE_ENV=development\" && concurrently \"webpack-dev-server --open\" \"nodemon server/server.js\""
+    "windev": "set \"NODE_ENV=development\" && concurrently \"webpack-dev-server --open\" \"nodemon server/server.js\"",
+    "winbuild": "set NODE_ENV=production && webpack"
   },
   "repository": {
     "type": "git",

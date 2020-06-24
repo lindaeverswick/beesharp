@@ -1,23 +1,38 @@
-const path = require("path");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-
-const env = process.env.NODE_ENV;
+const webpack = require("webpack");
+const path = require("path");
 
 module.exports = {
-  watch: false,
-  mode: env || "production",
   entry: "./src/index.js",
   output: {
-    filename: "main.js",
     path: path.resolve(__dirname, "dist"),
+    filename: "main.js",
+    publicPath: "/",
+  },
+  devServer: {
+    historyApiFallback: true,
+    proxy: {
+      "/logs": "http://localhost:3000",
+      "/api": "http://localhost:3000",
+    },
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        use: {
+          loader: "babel-loader",
+        },
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+          },
+        ],
       },
       {
         test: /\.s[ac]ss$/i,
@@ -26,13 +41,11 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "src/index.html",
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html",
     }),
+    new MiniCssExtractPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
-  devServer: {
-    historyApiFallback: true,
-    contentBase: path.join(__dirname, "dist"),
-    proxy: {},
-  },
 };

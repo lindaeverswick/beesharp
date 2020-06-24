@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const cookieParser = require('cookie-parser')
+const cookieParser = require("cookie-parser");
 
 // Subrouters
 const instrumentRouter = require('./routes/instrumentRoutes');
@@ -11,8 +11,6 @@ const userRouter = require('./routes/userRoutes');
 
 const app = express();
 const port = 3000;
-
-
 
 // Global Middleware
 app.use(bodyParser.json());
@@ -34,7 +32,7 @@ app.get("/", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  console.log("Error Message: ", err.message)
+  console.log("Error Message: ", err.message);
   res.status(400).json("Express error handler caught unknown middleware error");
 });
 app.listen(port, () => console.log(`App listening on port ${port}!`));

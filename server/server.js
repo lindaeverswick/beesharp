@@ -2,10 +2,15 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const secrets = require('./secrets')
 
 // Subrouters
-const instrumentRouter = require("./routes/instrumentRoutes");
-const logRouter = require("./routes/logRoutes");
+const instrumentRouter = require('./routes/instrumentRoutes');
+const logRouter = require('./routes/logRoutes');
+const authRouter = require('./routes/authRoutes');
+const userRouter = require('./routes/userRoutes');
+const cookieSession = require('cookie-session')
+const passport = require('passport')
 
 const app = express();
 const port = 3000;
@@ -15,12 +20,26 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+  // set up session cookies
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: [secrets.cookieKey]
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 // Sub Routers
-app.use("/api/instruments", instrumentRouter);
-app.use("/api/logs", logRouter);
+app.use('/api/instruments', instrumentRouter);
+app.use('/api/logs', logRouter);
+app.use('/api/users', userRouter);
+app.use('/auth', authRouter)
+
 
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../src/index.html"));
+  console.log("req user", req.user)
+  res.sendFile(path.resolve(__dirname, '../src/index.html'));
 });
 
 app.use((err, req, res, next) => {

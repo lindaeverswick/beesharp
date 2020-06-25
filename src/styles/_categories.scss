@@ -1,0 +1,26 @@
+.categories {
+  margin-top: 25px;
+}
+
+.category {
+  list-style-type: none;
+}
+
+.instrumentCategories {
+  border: 1px solid black;
+  height: 100%;
+  width: 200px;
+}
+
+.subCategories {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+}
+
+.categoryButton,
+.subCategoryButton {
+  margin-right: 10px;
+  border-radius: 5px;
+}

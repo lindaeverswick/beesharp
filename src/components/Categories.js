@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import Feed from "../containers/Feed";
-import subCategories from "./SubCategories";
 import SubCategories from "./SubCategories";
 
 const Categories = () => {
@@ -26,7 +25,27 @@ const Categories = () => {
       }
     }
     setCategories([...categories, ...array]);
-    // console.log(categories);
+  };
+
+  const removeCategory = (e) => {
+    console.log("trying to remove");
+    categories.forEach((obj, index) => {
+      if (obj.category === e.target.value) {
+        console.log(e.target.value);
+        setCategories((cat) => cat.splice(index, 1));
+      }
+    });
+  };
+
+  const toggle = (e) => {
+    // console.log(e.target.innerHTML);
+    if (e.target.innerHTML === "-") {
+      e.target.innerHTML = "x";
+      addCategory(e);
+    } else {
+      e.target.innerHTML = "-";
+      removeCategory(e);
+    }
   };
 
   useEffect(() => {
@@ -41,7 +60,13 @@ const Categories = () => {
     .map((tag, index) => {
       return (
         <li className="category" key={`category${index}`}>
-          <button type="button" value={tag} onClick={addCategory}>
+          <button
+            type="button"
+            className="categoryButton"
+            value={tag}
+            onClick={toggle}
+            on="false"
+          >
             -
           </button>
           {tag}
@@ -50,12 +75,12 @@ const Categories = () => {
     });
 
   return (
-    <>
+    <div className="categories">
       <ul className="instrumentCategories">{categoryArray}</ul>
       <div>
         <SubCategories categories={categories} />
       </div>
-    </>
+    </div>
   );
 };
 

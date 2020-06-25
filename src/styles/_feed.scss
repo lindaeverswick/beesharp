@@ -1,0 +1,32 @@
+.feedBox {
+  border: 1px solid purple;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 1650px;
+}
+
+.firstLine {
+  list-style-type: none;
+  margin-top: 75px;
+  font-weight: bold;
+}
+
+.available {
+  color: green;
+  float: right;
+  position: relative;
+  left: -1200px;
+  font-weight: normal;
+}
+
+.detailTextBox {
+  margin-left: 50px;
+  height: 100px;
+  width: 275px;
+}
+
+.line {
+  margin-top: 20px;
+}

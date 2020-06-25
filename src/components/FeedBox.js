@@ -12,25 +12,36 @@ const FeedBox = (props) => {
       <>
         <li className="firstLine" key={`item${index}`}>
           {item.color} {item.make} {item.model}{" "}
-          {item.isCheckedOut ? "Checked Out!" : "Available"}
-        </li> Details on condition <textarea placeholder="Write description here" className="detailTextBox" />
-        <button className="addToCheckoutList" onClick={
-          () => {
-            if (!item.isCheckedOut && !cache[item.id]) { 
-              updateCache({...cache, [item.id]: true})
-              addToArray(
-              [...checkoutArray, <li className="firstLine" key={item.id}>
-              {item.color} {item.make} {item.model}{" "}
-              </li>]
-            )}
-          }
-        }
-  >Add to Checkout List</button>
-    </>
+          <span className="available">
+            {item.isCheckedOut ? "Checked Out!" : "Available"}
+          </span>
+        </li>{" "}
+        Details on condition{" "}
+        <textarea
+          placeholder="Write description here"
+          className="detailTextBox"
+        />
+        <button
+          className="addToCheckoutList"
+          onClick={() => {
+            if (!item.isCheckedOut && !cache[item.id]) {
+              updateCache({ ...cache, [item.id]: true });
+              addToArray([
+                ...checkoutArray,
+                <li className="firstLine" key={item.id}>
+                  {item.color} {item.make} {item.model}{" "}
+                </li>,
+              ]);
+            }
+          }}
+        >
+          Add to Checkout List
+        </button>
+        <hr className="line"></hr>
+      </>
     );
   });
 
-  +
   useEffect(() => {
     fetch("/api/logs")
       .then((data) => data.json())
@@ -50,5 +61,6 @@ const FeedBox = (props) => {
 
 export default FeedBox;
 
-
-{/* <Checkout items={items} /> */}
+{
+  /* <Checkout items={items} /> */
+}

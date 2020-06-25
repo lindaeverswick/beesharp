@@ -1,7 +1,10 @@
 const request = require('supertest')
 const app = require('../server/server')
 describe('Post Endpoints', () => {
-  
+  afterAll(() => {
+    app.close();
+  });
+
   it('should create a new post', async (done) => {
     const res = await request(app)
       .post('/api/instruments/new')
@@ -15,8 +18,6 @@ describe('Post Endpoints', () => {
         "ischeckedout": false,
         "needsrepair": false
       })
-      .end(done)
-    app.close()
     expect(res.statusCode).toEqual(200)
     expect(res.body).toHaveProperty('payload')
   })

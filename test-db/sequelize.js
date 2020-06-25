@@ -6,18 +6,15 @@ const sequelize = new Sequelize('postgres://vxqutzpq:J3LN82tDCzEXbNZU4-4Nt__zInv
 const User = sequelize.define("users", {
   firstname: {
     type: Sequelize.STRING,
-    allowNull: false,
     notEmpty: true,
   },
   lastname: {
     type: Sequelize.STRING,
-    allowNull: false,
     notEmpty: true,
   },
   isadmin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
-    allowNull: false,
   },
   id: {
     type: Sequelize.INTEGER,
@@ -26,7 +23,6 @@ const User = sequelize.define("users", {
   },
   google_id: {
     type: Sequelize.INTEGER,
-    allowNull: false,
   },
 });
 
@@ -40,7 +36,6 @@ const Log = sequelize.define("log", {
       model: "users", // 'persons' refers to table name
       key: "id", // 'id' refers to column name in persons table
     },
-    allowNull: false,
   },
   checkoutnotes: Sequelize.STRING,
   checkinnotes: Sequelize.STRING,
@@ -68,7 +63,6 @@ const Instrument = sequelize.define("instruments", {
       model: "logs", // 'persons' refers to table name
       key: "id", // 'id' refers to column name in persons table
     },
-    allowNull: false,
   },
   ischeckedout: Sequelize.BOOLEAN,
   needsrepair: Sequelize.BOOLEAN,

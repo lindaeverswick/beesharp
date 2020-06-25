@@ -5,6 +5,7 @@ const FeedBox = (props) => {
   //hooks
   const [checkoutArray, addToArray] = useState([]);
   const [cache, updateCache] = useState({});
+  const [addDetail, setAddDetail] = useState("");
 
   const itemArray = items.map((item, index) => {
     const available = item.isCheckedOut ? "Checked Out!" : "Available";
@@ -12,14 +13,17 @@ const FeedBox = (props) => {
       <>
         <li className="firstLine" key={`item${index}`}>
           {item.color} {item.make} {item.model}{" "}
-          <span className="available">
-            {item.isCheckedOut ? "Checked Out!" : "Available"}
-          </span>
+          {item.isCheckedOut ? "Checked Out!" : "Available"}
         </li>{" "}
         Details on condition{" "}
         <textarea
           placeholder="Write description here"
           className="detailTextBox"
+          onChange={(e) => {
+            e.persist();
+            console.log("in text area checking e target   ", e.target.value);
+            setAddDetail(e.target.value);
+          }}
         />
         <button
           className="addToCheckoutList"
@@ -30,6 +34,11 @@ const FeedBox = (props) => {
                 ...checkoutArray,
                 <li className="firstLine" key={item.id}>
                   {item.color} {item.make} {item.model}{" "}
+                  <p className="appendDetailText">
+                    <b>NOTES</b>
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{addDetail}
+                  </p>
                 </li>,
               ]);
             }
@@ -37,7 +46,6 @@ const FeedBox = (props) => {
         >
           Add to Checkout List
         </button>
-        <hr className="line"></hr>
       </>
     );
   });

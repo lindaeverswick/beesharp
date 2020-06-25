@@ -6,6 +6,7 @@ const SubCategories = (props) => {
   const { categories } = props;
 
   const handleClick = (e) => {
+    e.target.innerHTML = "x";
     const array = [];
     categories.forEach((cat) => {
       if (
@@ -36,7 +37,12 @@ const SubCategories = (props) => {
     .map((sub, index) => {
       return (
         <li className="category" key={`make${index}`}>
-          <button type="button" value={sub} onClick={handleClick}>
+          <button
+            type="button"
+            className="subCategoryButton"
+            value={sub}
+            onClick={handleClick}
+          >
             -
           </button>
           {sub}
@@ -50,7 +56,12 @@ const SubCategories = (props) => {
     .map((sub, index) => {
       return (
         <li className="category" key={`model${index}`}>
-          <button type="button" value={sub} onClick={handleClick}>
+          <button
+            type="button"
+            className="subCategoryButton"
+            value={sub}
+            onClick={handleClick}
+          >
             -
           </button>
           {sub}
@@ -64,7 +75,12 @@ const SubCategories = (props) => {
     .map((sub, index) => {
       return (
         <li className="category" key={`model${index}`}>
-          <button type="button" value={sub} onClick={handleClick}>
+          <button
+            type="button"
+            className="subCategoryButton"
+            value={sub}
+            onClick={handleClick}
+          >
             -
           </button>
           {sub}
@@ -75,7 +91,7 @@ const SubCategories = (props) => {
   const model = modelArray.length === 0 ? "" : "Model";
   const color = colorArray.length === 0 ? "" : "Color";
   return (
-    <>
+    <div className="subCategories">
       <div className="makeCategories">
         <h4>{make}</h4>
         <ul className="makeList">{makeArray}</ul>
@@ -91,7 +107,7 @@ const SubCategories = (props) => {
         <ul className="colorList">{colorArray}</ul>
       </div>
       <Feed items={items} />
-    </>
+    </div>
   );
 };
 

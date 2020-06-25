@@ -21,7 +21,6 @@ const FeedBox = (props) => {
 
   return (
     <>
-      <h1>FEEDBOX IS HERE</h1>
       <div className="feedBox">
         <ul>{itemArray}</ul>
       </div>

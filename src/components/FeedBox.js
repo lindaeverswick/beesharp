@@ -32,14 +32,16 @@ const FeedBox = (props) => {
               updateCache({ ...cache, [item.id]: true });
               addToArray([
                 ...checkoutArray,
+                <div className="hello">
                 <li className="firstLine" key={item.id}>
                   {item.color} {item.make} {item.model}{" "}
                   <p className="appendDetailText">
                     <b>NOTES</b>
-                    <br />
+                    <p></p>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{addDetail}
                   </p>
-                </li>,
+                </li>
+                </div>,
               ]);
             }
           }}
@@ -60,8 +62,9 @@ const FeedBox = (props) => {
     <>
       <div className="feedBox">
         <ul>{itemArray}</ul>
+        <div className="innerFeedBox">
         <ul>{checkoutArray}</ul>
-        {/* <CheckoutList list={}/> */}
+        </div>     
       </div>
     </>
   );

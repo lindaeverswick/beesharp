@@ -50,3 +50,5 @@ app.use((err, req, res, next) => {
   res.status(400).json("Express error handler caught unknown middleware error");
 });
 app.listen(port, () => console.log(`App listening on port ${port}!`));
+
+module.exports = app;

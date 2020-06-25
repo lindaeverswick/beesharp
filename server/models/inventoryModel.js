@@ -1,10 +1,19 @@
 const { Pool, Client } = require('pg')
-const connectionString = 'postgres://ahtywmkw:wkHRU9n3zLf4f4960N3b_ol9tD8nb2Bm@ruby.db.elephantsql.com:5432/ahtywmkw'
+let db_url;
+
+if (process.env.NODE_ENV === 'test'){
+  db_url = 'postgres://vxqutzpq:J3LN82tDCzEXbNZU4-4Nt__zInvGdSrQ@ruby.db.elephantsql.com:5432/vxqutzpq';
+  console.log('test mode')
+} else {
+  db_url = 'postgres://ahtywmkw:wkHRU9n3zLf4f4960N3b_ol9tD8nb2Bm@ruby.db.elephantsql.com:5432/ahtywmkw';
+  console.log('non-test mode')
+}
+const connectionString = db_url;
 const pool = new Pool({
   connectionString: connectionString,
 })
 pool.query('SELECT NOW()', (err, res) => {
-  console.log(err, res)
+  // console.log(err, res)
 })
 
 // const addInstrument = (Category, Make, Model, Color, InstrumentId) => {
@@ -23,7 +32,7 @@ pool.query('SELECT NOW()', (err, res) => {
 
 module.exports = {
   query: (text, params, callback) => {
-    console.log('executed query', text);
+    // console.log('executed query', text);
     return pool.query(text, params, callback);
   }
 };

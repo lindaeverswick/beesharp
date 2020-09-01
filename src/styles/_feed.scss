@@ -1,16 +1,18 @@
 .feedBox {
-  border: 1px solid purple;
+  border: .1rem solid black;
+  border-radius: .2rem;
   position: absolute;
   right: 0;
   top: 0;
-  height: 100%;
-  width: 1650px;
-
+  height: auto;
+  width: auto;
+  padding: 2rem;
+  background-color: #FCF4A3; 
 }
-
+//name of instrumment in popup
 .firstLine {
   list-style-type: none;
-  margin-top: 75px;
+  margin-top: 3rem;
   font-weight: bold;
   background-color: #FCF4A3;
 }
@@ -19,16 +21,17 @@
   color: green;
   float: right;
   position: relative;
-  left: -1200px;
+  // left: -10rem;
   font-weight: normal;
 }
-
+//write description here
 .detailTextBox {
-  margin-left: 50px;
-  height: 100px;
-  width: 275px;
-  border: 1px solid black;
-  background-color: #FCF4A3;
+  margin-left: 2rem;
+  height: 3rem;
+  width: 6rem;
+  border: .01rem solid black;
+  border-radius: .2rem;
+  background-color: white;
 }
 
 .line {

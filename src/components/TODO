@@ -1,0 +1,7 @@
+get box A functionality working
+get box B to trigger box c
+rename components 
+style box c
+  make box C resizable
+  pull box c out of the div it is in so it can be styled with flex box
+use context to give it the context it needs

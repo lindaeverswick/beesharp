@@ -9,7 +9,6 @@ const readOne = (model) => async (req, res, next) => {
       WHERE id = $1`,
       [req.params.id]
     );
-    console.log(rows)
     res.locals.payload = rows;
     return next();
   } catch (error) {
@@ -23,7 +22,6 @@ const readMany = (model) => async (req, res, next) => {
       const { rows } = await db.query(`
         SELECT * FROM ${model}`
       );
-      console.log(rows)
       res.locals.payload = rows;
       return next();
     } catch (error) {
@@ -57,7 +55,6 @@ const createOne = (model) => async (req, res, next) => {
       RETURNING *`,
       values
     );
-    console.log(rows[0])
     res.locals.payload = rows[0];
     return next();
   } catch (error) {
@@ -97,7 +94,6 @@ const updateOne = (model) => async (req, res, next) => {
       values
     );
     
-    console.log(rows[0])
     res.locals.payload = rows[0];
     return next();
   } catch (error) {
@@ -120,7 +116,6 @@ const deleteOne = (model) => async (req, res, next) => {
         *`,
       [id]
     );
-    console.log(rows[0])
     res.locals.payload = rows[0];
     return next();
   } catch (error) {

@@ -43,7 +43,7 @@ const SubCategories = (props) => {
             value={sub}
             onClick={handleClick}
           >
-            -
+            +
           </button>
           {sub}
         </li>
@@ -62,7 +62,7 @@ const SubCategories = (props) => {
             value={sub}
             onClick={handleClick}
           >
-            -
+            +
           </button>
           {sub}
         </li>
@@ -81,7 +81,7 @@ const SubCategories = (props) => {
             value={sub}
             onClick={handleClick}
           >
-            -
+            +
           </button>
           {sub}
         </li>

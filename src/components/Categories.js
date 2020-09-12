@@ -7,6 +7,21 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [lastInstrument, setLastInstrument] = useState('');
 
+  //helper functions
+  const toggleButton = (e) => {
+    if (e.target.innerHTML === "+") {
+      e.target.innerHTML = "-"
+    } else {
+      e.target.innerHTML = "+"
+    }
+  }
+
+  const resetOtherButton = () => {
+    if (lastInstrument) {
+      lastInstrument.innerHTML = '+'
+    } 
+  }
+
   //can we use a set instead?
   const addCategory = (e) => {
     const array = [];
@@ -28,30 +43,24 @@ const Categories = () => {
     }
     //add info for this instrument
     setCategories([...categories, ...array]);
-    //set the last instrument to this current instrument (overwrite previous if it's there)
+    //set the last instrument to this current instrument
     setLastInstrument(e.target)
   };
 //make categories an empty array...
-  const removeCategory = () => {
+  const removeCategory = (e) => {
     setCategories([])  
-    if (lastInstrument.innerHTML === '-') {
-      lastInstrument.innerHTML = '+'
-    } 
-    // categories.forEach((obj, index) => {
-    //   if (obj.category === lastInstrument.value) {
-    //     setCategories((cat) => cat.splice(index, 1));
-    //   }
-    // });
+    setLastInstrument('')
   };
 
-  const toggle = (e) => {
+  const clickHandler = (e) => {
     if (e.target.innerHTML === "+") {
-      e.target.innerHTML = "-";
-      removeCategory();
-      addCategory(e);
+      resetOtherButton()
+      removeCategory()
+      addCategory(e)
+      toggleButton(e)
     } else {
-      e.target.innerHTML = "+";
-      removeCategory();
+      removeCategory()
+      toggleButton(e)
     }
   };
 
@@ -63,7 +72,7 @@ const Categories = () => {
 
   let categoryArray = instruments.map((cat) => cat.category);
   categoryArray = categoryArray
-  //is this working?
+  //how does this work?
     .filter((a, b) => categoryArray.indexOf(a) === b)
     .map((tag, index) => {
       return (
@@ -72,7 +81,7 @@ const Categories = () => {
             type="button"
             className="categoryButton"
             value={tag}
-            onClick={toggle}
+            onClick={clickHandler}
             on="false"
           >
             +

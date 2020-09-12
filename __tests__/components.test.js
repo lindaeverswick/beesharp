@@ -1,4 +1,5 @@
-// pressing + should add instrument details
-// buttons should toggle +/- when clicked
-// pressing - should also remove the instruments details
-// pressing + on another button while there is already another - should trigger the last button to toggle and remove its details
+// pressing + should add instrument details DONE
+// buttons should toggle +/- when clicked DONE
+// pressing - should also remove the instruments details DONE
+// pressing + should clear any other - buttons DONE
+// pressing + should clear categories and then add only that buttons categories NOT DONE...does not remove 

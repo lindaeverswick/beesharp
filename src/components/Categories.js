@@ -1,11 +1,28 @@
-import React, { useState, useEffect, useRef } from "react";
-import Feed from "../containers/Feed";
+import React, { useState, useEffect } from "react";
+// import Feed from "../containers/Feed";
 import SubCategories from "./SubCategories";
 
 const Categories = () => {
   const [instruments, setInstruments] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [lastInstrument, setLastInstrument] = useState('');
 
+  //helper functions
+  const toggleButton = (e) => {
+    if (e.target.innerHTML === "+") {
+      e.target.innerHTML = "-"
+    } else {
+      e.target.innerHTML = "+"
+    }
+  }
+
+  const resetOtherButton = () => {
+    if (lastInstrument) {
+      lastInstrument.innerHTML = '+'
+    } 
+  }
+
+  //can we use a set instead?
   const addCategory = (e) => {
     const array = [];
     instruments.forEach((obj) => {
@@ -13,7 +30,7 @@ const Categories = () => {
         array.push(obj);
       }
     });
-
+    
     for (let i = 0; i < categories.length; i++) {
       for (let j = 0; j < array.length; j++) {
         if (
@@ -24,27 +41,26 @@ const Categories = () => {
         }
       }
     }
+    //add info for this instrument
     setCategories([...categories, ...array]);
+    //set the last instrument to this current instrument
+    setLastInstrument(e.target)
   };
-
+//make categories an empty array...
   const removeCategory = (e) => {
-    console.log("trying to remove");
-    categories.forEach((obj, index) => {
-      if (obj.category === e.target.value) {
-        console.log(e.target.value);
-        setCategories((cat) => cat.splice(index, 1));
-      }
-    });
+    setCategories([])  
+    setLastInstrument('')
   };
 
-  const toggle = (e) => {
-    // console.log(e.target.innerHTML);
-    if (e.target.innerHTML === "-") {
-      e.target.innerHTML = "x";
-      addCategory(e);
+  const clickHandler = (e) => {
+    if (e.target.innerHTML === "+") {
+      resetOtherButton()
+      removeCategory()
+      addCategory(e)
+      toggleButton(e)
     } else {
-      e.target.innerHTML = "-";
-      removeCategory(e);
+      removeCategory()
+      toggleButton(e)
     }
   };
 
@@ -56,6 +72,7 @@ const Categories = () => {
 
   let categoryArray = instruments.map((cat) => cat.category);
   categoryArray = categoryArray
+  //how does this work?
     .filter((a, b) => categoryArray.indexOf(a) === b)
     .map((tag, index) => {
       return (
@@ -64,10 +81,10 @@ const Categories = () => {
             type="button"
             className="categoryButton"
             value={tag}
-            onClick={toggle}
+            onClick={clickHandler}
             on="false"
           >
-            -
+            +
           </button>
           {tag}
         </li>
@@ -76,12 +93,13 @@ const Categories = () => {
 
   return (
     <div className="categories">
-      <ul className="instrumentCategories">{categoryArray}</ul>
-      <div>
-        <SubCategories categories={categories} />
-      </div>
+        <ul className="instrumentCategories">{categoryArray}</ul>
+        <div>
+          <SubCategories categories={categories} />
+        </div>
     </div>
   );
 };
 
 export default Categories;
+ 

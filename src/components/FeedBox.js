@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 const FeedBox = (props) => {
   const { items } = props;
-  //hooks
+  
   const [checkoutArray, addToArray] = useState([]);
   const [cache, updateCache] = useState({});
   const [addDetail, setAddDetail] = useState("");

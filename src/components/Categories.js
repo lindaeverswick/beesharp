@@ -22,7 +22,6 @@ const Categories = () => {
     } 
   }
 
-  //can we use a set instead?
   const addCategory = (e) => {
     const array = [];
     instruments.forEach((obj) => {
@@ -54,12 +53,18 @@ const Categories = () => {
 
   const clickHandler = (e) => {
     if (e.target.innerHTML === "+") {
+      //change previous clicked button's inner html back to '+' and set lastInstrument to ''
       resetOtherButton()
+      //clear all the details with setCategories([])
       removeCategory()
+      //add categories for instrument clicked
       addCategory(e)
+      //change clicked button's inner html to '-' and set lastInstrument to current
       toggleButton(e)
     } else {
+      //remove all details with setCategories([]) and set last instrument to ''
       removeCategory()
+      //toggle button back to '+' 
       toggleButton(e)
     }
   };

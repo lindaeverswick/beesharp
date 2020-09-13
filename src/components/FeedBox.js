@@ -55,7 +55,7 @@ const FeedBox = (props) => {
   useEffect(() => {
     fetch("/api/logs")
       .then((data) => data.json())
-      .then((data) => console.log(data.payload));
+      /*.then((data) => console.log(data.payload));*/
   }, []);
 
   return (

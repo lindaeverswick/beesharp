@@ -1,10 +1,10 @@
 import React from "react";
-import Categories from "../components/Categories";
+import InstrumentSelectors from "../components/InstrumentSelectors";
 
 const MainContainer = () => {
   return (
     <div className="cat">
-      <Categories />
+      <InstrumentSelectors />
     </div>
   );
 };

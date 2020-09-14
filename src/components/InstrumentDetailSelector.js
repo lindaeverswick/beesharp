@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import Feed from "../containers/Feed";
 
 const InstrumentDetailSelector = (props) => {
@@ -20,6 +20,36 @@ const InstrumentDetailSelector = (props) => {
   const [currentMake, setCurrentMake] = useState(null)
   const [currentModel, setCurrentModel] = useState(null)
   const [currentColor, setCurrentColor] = useState(null)
+
+  const makeClickHandlerFor = (make) => (
+    (e) => {
+      if (make === currentMake) {
+        setCurrentMake(null)
+      } else {
+        setCurrentMake(make)
+      }
+    }
+  )
+
+  const modelClickHandlerFor = (model) => (
+    (e) => {
+      if (model === currentModel) {
+        setCurrentModel(null)
+      } else {
+        setCurrentModel(model)
+      }
+    }
+  )
+
+  const colorClickHandlerFor = (color) => (
+    (e) => {
+      if (color === currentColor) {
+        setCurrentColor(null)
+      } else {
+        setCurrentColor(color)
+      }
+    }
+  )
 
   useEffect(() => {
     let currentItems = instruments
@@ -52,9 +82,9 @@ const InstrumentDetailSelector = (props) => {
                 type="button"
                 className="subCategoryButton"
                 value={make}
-                onClick={()=>{}}
+                onClick={makeClickHandlerFor(make)}
               >
-                +
+               { make === currentMake ? '-' : '+'}
               </button>
               {make}
             </li>
@@ -71,9 +101,9 @@ const InstrumentDetailSelector = (props) => {
                 type="button"
                 className="subCategoryButton"
                 value={model}
-                onClick={()=>{}}
+                onClick={modelClickHandlerFor(model)}
               >
-                +
+               { model === currentModel ? '-' : '+'}
               </button>
               {model}
             </li>
@@ -90,9 +120,9 @@ const InstrumentDetailSelector = (props) => {
                 type="button"
                 className="subCategoryButton"
                 value={color}
-                onClick={()=>{}}
+                onClick={colorClickHandlerFor(color)}
               >
-                +
+                { color === currentColor ? '-' : '+'}
               </button>
               {color}
             </li>
